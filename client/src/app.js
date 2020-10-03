@@ -1,12 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
+import Dashboard from './components/Dashboard'
+import TaskContextProvider from './context/TaskContext';
 
 function App(){
 
     return (
         <>
             <h1>Sunday App</h1>
-            <h2>Welcome</h2>
+            <TaskContextProvider>
+                <Dashboard/>
+            </TaskContextProvider>
         </>
     );
 }
