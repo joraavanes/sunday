@@ -7,7 +7,7 @@ function App(){
 
     return (
         <>
-            <h1>Sunday App</h1>
+            <h1>Sunday --- Managing tasks</h1>
             <TaskContextProvider>
                 <Dashboard/>
             </TaskContextProvider>
