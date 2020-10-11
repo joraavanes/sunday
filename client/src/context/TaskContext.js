@@ -1,23 +1,45 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
+import moment from 'moment'
+import { v4 } from 'uuid'
 
 export const TaskContext = createContext();
 
 const TaskContextProvider = props => {
 
-    const [tasks, setTasks] = useState([{title: 'task 1', id: 1}, {title: 'task 2', id: 2}]);
+    const getData = () => {
+        const strData = localStorage.getItem('tasks');
+        const data = JSON.parse(strData);
+        return data || [];
+    };
+
+    const [tasks, setTasks] = useState(getData);
     
-    const addTask = title => {
+    useEffect(() => {
+        const strData = JSON.stringify(tasks);
+        localStorage.setItem('tasks', strData);
+
+    }, [tasks]);
+
+    const addTask = (title, deadline) => {
+        deadline = moment(deadline).unix();
+        deadline *= 1000;
         setTasks([
             ...tasks,
             {
-                id: tasks.length + 1,
-                title
+                id: v4(),
+                title,
+                deadline
             }
         ]);
     }
 
+    const removeTask = id => {
+        const filtered = tasks.filter(task => task.id != id);
+        setTasks(filtered);
+    }
+
     return(
-        <TaskContext.Provider value={{tasks, addTask}}>
+        <TaskContext.Provider value={{tasks, addTask, removeTask}}>
             {props.children}
         </TaskContext.Provider>
     )
