@@ -1,16 +1,19 @@
 import React, {useContext} from 'react'
 import { TaskContext } from '../context/TaskContext'
+import { UserContext } from '../context/UserContext';
 import TaskForm from './Task/TaskForm'
 import TaskItem from './Task/TaskItem'
 
 const Dashboard = () => {
 
     const {tasks} = useContext(TaskContext);
+    const {users} = useContext(UserContext);
 
     return (
         <>
             <TaskForm/>
             <h2>Tasks</h2>
+            {users && users.map(user => <p>{user.email}</p>)}
             <table>
                 <thead>
                     <tr>

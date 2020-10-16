@@ -21,8 +21,8 @@ const TaskContextProvider = props => {
     }, [tasks]);
 
     const addTask = (title, deadline) => {
-        deadline = moment(deadline).unix();
-        deadline *= 1000;
+        deadline = deadline && moment(deadline).unix() * 1000;
+
         setTasks([
             ...tasks,
             {
