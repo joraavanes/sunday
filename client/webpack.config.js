@@ -7,7 +7,7 @@ module.exports = {
     mode: 'development',
     entry: './index.js',
     output: {
-        path: path.join(__dirname, 'public/js'),
+        path: path.join(__dirname, '../server/public/js'),
         filename: 'bundle.js'
     },
     module:{
@@ -23,8 +23,8 @@ module.exports = {
         new CleanWebpackPlugin({cleanAfterEveryBuildPatterns:true}),
         new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'src/assets/index.html'
+            filename: '../index.html',
+            template: 'src/assets/index.html',
         })
     ],
     devServer: {
