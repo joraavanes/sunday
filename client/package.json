@@ -6,8 +6,8 @@
   "author": "joraavanes",
   "license": "MIT",
   "scripts": {
-    "webpack": "webpack --watch",
-    "server": "webpack-dev-server",
+    "webpack": "webpack --watch --config=webpack.server.js",
+    "server": "webpack-dev-server --config=webpack.server.js",
     "dev": "concurrently \"npm run webpack\" \"npm run server\""
   },
   "dependencies": {

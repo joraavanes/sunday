@@ -4,3 +4,4 @@ node_modules
 yarn-error.log
 client/yarn-error.log
 server/yarn-error.log
+client/public

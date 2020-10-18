@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter as Router, Link, NavLink, Route,Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route,Switch } from 'react-router-dom'
 import App from './src/app';
 import Dashboard from './src/components/Dashboard';
 import User from './src/components/User/User';

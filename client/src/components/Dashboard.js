@@ -13,7 +13,7 @@ const Dashboard = () => {
         <>
             <TaskForm/>
             <h2>Tasks</h2>
-            {users && users.map(user => <p>{user.email}</p>)}
+            {users && users.map(user => <p key={user.id}>{user.email}</p>)}
             <table>
                 <thead>
                     <tr>
