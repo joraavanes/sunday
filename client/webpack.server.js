@@ -16,6 +16,28 @@ module.exports = {
                 use: 'babel-loader',
                 exclude: /node_modules/,
                 test: /\.js$/
+            },
+            {
+                use: [
+                    {
+                        loader:'style-loader'
+                    },{
+                        loader: 'css-loader',
+                        options:{
+                            modules: {
+                                compileType: 'module',
+                                localIdentName: "[name]-[local]___[hash:base64]",
+                                getLocalIdent: (loaderContext, localIdentName, localName, options) => {
+                                    if(loaderContext.resourcePath.includes('node_modules') || loaderContext.resourcePath.includes('custom'))
+                                        return localName;
+                                }
+                            },														
+                            sourceMap: true
+                        }
+                    }
+                ],
+                exclude: /node_modules/,
+                test: /\.css$/
             }
         ]
     },
