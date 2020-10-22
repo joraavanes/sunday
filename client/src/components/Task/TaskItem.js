@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
+import { removeTask } from '../../actions/taskActions';
 import { TaskContext } from '../../context/TaskContext'
 
 const TaskItem = ({id, title, deadline, quantity}) => {
-    const {removeTask} = useContext(TaskContext);
+    const {dispatch} = useContext(TaskContext);
 
-    const handleRemoveTask = () => removeTask(id);
+    const handleRemoveTask = () => dispatch(removeTask(id));
 
     return (
         <tr>

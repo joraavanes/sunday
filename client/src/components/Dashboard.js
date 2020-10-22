@@ -6,7 +6,7 @@ import TaskItem from './Task/TaskItem'
 
 const Dashboard = () => {
 
-    const {tasks} = useContext(TaskContext);
+    const {tasks, loading} = useContext(TaskContext);
     const {users} = useContext(UserContext);
 
     return (

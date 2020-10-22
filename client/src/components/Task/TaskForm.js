@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react'
 import moment from 'moment'
+import { v4 } from 'uuid'
 import { TaskContext } from '../../context/TaskContext'
+import { addTask } from '../../actions/taskActions';
 
 const TaskForm = () => {
-    const {addTask} = useContext(TaskContext);
+    const {dispatch} = useContext(TaskContext);
 
     const [title, setTitle] = useState('');
     const [deadline, setDeadline] = useState('');
@@ -13,7 +15,12 @@ const TaskForm = () => {
 
     const handleFormSubmit = e => {
         e.preventDefault();
-        addTask(title, deadline);
+        dispatch(
+            addTask(
+                v4(),
+                title,
+                moment(deadline).unix() * 1000
+        ));
 
         setTitle('');
         setDeadline('');

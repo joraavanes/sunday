@@ -1,45 +1,50 @@
-import React, {createContext, useEffect, useState} from 'react';
-import moment from 'moment'
-import { v4 } from 'uuid'
+import React, {createContext, useEffect, useReducer, useState} from 'react';
+import taskReducer, { defaultTaskState } from '../reducers/taskReducer';
 
 export const TaskContext = createContext();
 
 const TaskContextProvider = props => {
 
-    const getData = () => {
-        const strData = localStorage.getItem('tasks');
-        const data = JSON.parse(strData);
-        return data || [];
-    };
+    // const getData = () => {
+    //     const strData = localStorage.getItem('tasks');
+    //     const data = JSON.parse(strData);
+    //     return data || [];
+    // };
+    // const [tasks, setTasks] = useState(getData);
 
-    const [tasks, setTasks] = useState(getData);
-    
+    const [taskState, dispatch] = useReducer(taskReducer, [], () => {
+        const strData = localStorage.getItem('taskState');
+        return JSON.parse(strData) || defaultTaskState;
+    });
+
     useEffect(() => {
-        const strData = JSON.stringify(tasks);
-        localStorage.setItem('tasks', strData);
+        const strData = JSON.stringify(taskState);
+        localStorage.setItem('taskState', strData);
 
-    }, [tasks]);
+    }, [taskState]);
 
-    const addTask = (title, deadline) => {
-        deadline = deadline && moment(deadline).unix() * 1000;
+    // const addTask = (title, deadline) => {
+    //     deadline = deadline && moment(deadline).unix() * 1000;
 
-        setTasks([
-            ...tasks,
-            {
-                id: v4(),
-                title,
-                deadline
-            }
-        ]);
-    }
+    //     setTasks([
+    //         ...tasks,
+    //         {
+    //             id: v4(),
+    //             title,
+    //             deadline
+    //         }
+    //     ]);
+    // }
 
-    const removeTask = id => {
-        const filtered = tasks.filter(task => task.id != id);
-        setTasks(filtered);
-    }
+    // const removeTask = id => {
+    //     const filtered = tasks.filter(task => task.id != id);
+    //     setTasks(filtered);
+    // }
 
+    const {tasks, loading} = taskState;
+    
     return(
-        <TaskContext.Provider value={{tasks, addTask, removeTask}}>
+        <TaskContext.Provider value={{tasks, loading, dispatch}}>
             {props.children}
         </TaskContext.Provider>
     )
