@@ -5,7 +5,7 @@ import Dashboard from './src/components/Dashboard';
 import User from './src/components/User/User';
 import TaskContextProvider from './src/context/TaskContext';
 import UserContextProvider, { UserContext } from './src/context/UserContext';
-import styles from './src/styles/app.css'
+import styles from './src/styles/index.css'
 
 const routes = (
     <Router>
