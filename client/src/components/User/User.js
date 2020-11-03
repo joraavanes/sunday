@@ -20,7 +20,7 @@ const User = () => {
 
     return (
         <div>
-            <h2>User Settings hhhh</h2>
+            <h2>User Settings</h2>
             {users && users.map(user => <li key={user.id}>{user.name} {user.email}</li>)}
             <hr/>
             <form onSubmit={handleAddSubmit}>
