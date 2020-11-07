@@ -1,6 +1,7 @@
 export const defaultTaskState = {
     tasks: [],
     category: '',
+    sortDate: true,
     loading: false
 };
 
@@ -18,6 +19,18 @@ function taskReducer(state, action){
                         deadline: action.deadline
                     }
                 ]
+            };
+
+        case 'SORT_BY_DATE':
+            const sortDate = !state.sortDate;
+            const sortedTasks = state.tasks.sort((a,b) =>
+                sortDate ? (b.deadline - a.deadline) : (a.deadline - b.deadline)
+            );
+
+            return {
+                ...state,
+                sortDate,
+                tasks: sortedTasks
             };
 
         case 'REMOVE_TASK':

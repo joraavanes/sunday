@@ -1,4 +1,5 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
+import { sortTasks } from '../actions/taskActions';
 import { TaskContext } from '../context/TaskContext'
 import { UserContext } from '../context/UserContext';
 import TaskForm from './Task/TaskForm'
@@ -6,20 +7,26 @@ import TaskItem from './Task/TaskItem'
 
 const Dashboard = () => {
 
-    const {tasks, loading} = useContext(TaskContext);
+    const {tasks, loading, sortDate, dispatch} = useContext(TaskContext);
     const {users} = useContext(UserContext);
+
+    useEffect(() => {
+        dispatch(sortTasks());
+        
+    }, [])
 
     return (
         <>
             <TaskForm/>
             <h2>Tasks</h2>
             {users && users.map(user => <p key={user.id}>{user.email}</p>)}
+
             <table>
                 <thead>
                     <tr>
                         <th>id</th>
                         <th>title</th>
-                        <th>deadline</th>
+                        <th onClick={() => dispatch(sortTasks())}>Deadline</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
