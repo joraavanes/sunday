@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react'
-import { sortTasks } from '../actions/taskActions';
+import { sortTasksByDate, sortTasksByTitle } from '../actions/taskActions';
 import { TaskContext } from '../context/TaskContext'
 import { UserContext } from '../context/UserContext';
 import TaskForm from './Task/TaskForm'
@@ -7,11 +7,11 @@ import TaskItem from './Task/TaskItem'
 
 const Dashboard = () => {
 
-    const {tasks, loading, sortDate, dispatch} = useContext(TaskContext);
+    const {tasks, loading, dispatch} = useContext(TaskContext);
     const {users} = useContext(UserContext);
 
     useEffect(() => {
-        dispatch(sortTasks());
+        dispatch(sortTasksByDate());
         
     }, [])
 
@@ -25,8 +25,8 @@ const Dashboard = () => {
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>title</th>
-                        <th onClick={() => dispatch(sortTasks())}>Deadline</th>
+                        <th onClick={() => dispatch(sortTasksByTitle())}>title</th>
+                        <th onClick={() => dispatch(sortTasksByDate())}>Deadline</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>

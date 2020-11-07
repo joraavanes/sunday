@@ -41,10 +41,10 @@ const TaskContextProvider = props => {
     //     setTasks(filtered);
     // }
 
-    const {tasks, sortDate, loading} = taskState;
+    const {tasks, loading} = taskState;
     
     return(
-        <TaskContext.Provider value={{tasks, sortDate, loading, dispatch}}>
+        <TaskContext.Provider value={{tasks, loading, dispatch}}>
             {props.children}
         </TaskContext.Provider>
     )

@@ -10,6 +10,10 @@ export const removeTask = id => ({
     id
 });
 
-export const sortTasks = () => ({
+export const sortTasksByDate = () => ({
     type: 'SORT_BY_DATE'
+});
+
+export const sortTasksByTitle = () => ({
+    type: 'SORT_BY_TITLE'
 });
