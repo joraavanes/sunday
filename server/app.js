@@ -10,7 +10,9 @@ const app = express();
 
 const indexPath = path.join(__dirname, 'public', 'index.html');
 
+// middlewares
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
 
 // routes
 app.use('/tasks', require('./routes/taskRoutes'));
