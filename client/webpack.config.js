@@ -9,7 +9,7 @@ module.exports = {
     output: {
         // path: path.join(__dirname, '../server/public/js'),
         path: path.join(__dirname, '../server/public'),
-        filename: 'bundle.js'
+        filename: 'bundle.[contenthash].js'
     },
     module:{
         rules:[
