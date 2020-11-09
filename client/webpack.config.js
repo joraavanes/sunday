@@ -7,7 +7,8 @@ module.exports = {
     mode: 'development',
     entry: './index.js',
     output: {
-        path: path.join(__dirname, '../server/public/js'),
+        // path: path.join(__dirname, '../server/public/js'),
+        path: path.join(__dirname, '../server/public'),
         filename: 'bundle.js'
     },
     module:{
@@ -16,14 +17,37 @@ module.exports = {
                 use: 'babel-loader',
                 exclude: /node_modules/,
                 test: /\.js$/
+            },
+            {
+                use: [
+                    {
+                        loader:'style-loader'
+                    },{
+                        loader: 'css-loader',
+                        options:{
+                            modules: {
+                                compileType: 'module',
+                                localIdentName: "[name]-[local]___[hash:base64]",
+                                getLocalIdent: (loaderContext, localIdentName, localName, options) => {
+                                    if(loaderContext.resourcePath.includes('node_modules') || loaderContext.resourcePath.includes('custom'))
+                                        return localName;
+                                }
+                            },														
+                            sourceMap: true
+                        }
+                    }
+                ],
+                exclude: /node_modules/,
+                test: /\.css$/
             }
         ]
     },
     plugins:[
         new CleanWebpackPlugin({cleanAfterEveryBuildPatterns:true}),
-        new HotModuleReplacementPlugin(),
+        // new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            filename: '../index.html',
+            // filename: '../index.html',
+            filename: './index.html',
             template: 'src/assets/index.html',
         })
     ]
