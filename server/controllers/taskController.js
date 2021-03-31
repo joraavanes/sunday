@@ -1,6 +1,17 @@
 const Task = require('../models/Task');
 
-exports.getTask = (req, res, next) => {};
+exports.getTask = (req, res, next) => {
+    const {id} = req.params;
+
+    Task.findById(id)
+        .then(task => {
+            if(!task) throw new Error();
+            res.send(task);
+        })
+        .catch(err => {
+            res.status(400).send();
+        });
+};
 
 exports.getAllTasks = (req, res, next) => {
     Task.find()
