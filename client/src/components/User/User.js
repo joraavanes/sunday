@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { addUser } from '../../actions/userActions';
-import { UserContext } from '../../context/UserContext'
+import { UserContext } from '../../context/UserContext';
 
 const User = () => {
 
@@ -16,7 +16,7 @@ const User = () => {
         setName('');
         setEmail('');
         setAge('');
-    }
+    };
 
     return (
         <div>
@@ -39,7 +39,7 @@ const User = () => {
                 <input type="submit" value="Add user"/>
             </form>
         </div>
-    )
+    );
 };
 
 export default User;

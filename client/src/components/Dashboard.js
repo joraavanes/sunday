@@ -1,9 +1,9 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect} from 'react';
 import { sortTasksByDate, sortTasksByTitle } from '../actions/taskActions';
-import { TaskContext } from '../context/TaskContext'
+import { TaskContext } from '../context/TaskContext';
 import { UserContext } from '../context/UserContext';
-import TaskForm from './Task/TaskForm'
-import TaskItem from './Task/TaskItem'
+import TaskForm from './Task/TaskForm';
+import TaskItem from './Task/TaskItem';
 
 const Dashboard = () => {
 
@@ -12,8 +12,8 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(sortTasksByDate());
-        
-    }, [])
+        console.log(users);
+    }, []);
 
     return (
         <>
